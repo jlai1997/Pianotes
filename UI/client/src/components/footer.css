@@ -1,0 +1,26 @@
+.footer-page{
+  padding-top: 10%;
+  text-align: center;
+}
+
+.logo-img-foot{
+  padding-top: 5px;
+  height: 80px;
+}
+
+.footer-page p{
+  color: darkblue;
+  font-size: 9px;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-page hr{
+  border-top: 5px line;
+  border-top-width: thin;
+  border-top-color: white;
+  width: 90%;
+  margin: auto;
+  padding-top: 10px;
+  padding-bottom: 25px;
+}

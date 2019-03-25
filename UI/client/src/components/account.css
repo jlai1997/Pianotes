@@ -1,0 +1,69 @@
+.background{
+  padding-top: 55px;
+  background: #00c6ff;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #0072ff, #00c6ff);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #0072ff, #00c6ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+}
+
+.container1{
+  text-align: center;
+  width: 50%;
+  background-color: steelblue;
+  padding-top: 5px;
+  padding-bottom: 25px;
+  border: black;
+  border-style: solid;
+  border-color: lightsteelblue;
+  border-width: thin;
+  margin: auto;
+}
+
+.container2{
+  text-align: center;
+  width: 60%;
+  background-color: steelblue;
+  padding-top: 5px;
+  padding-bottom: 25px;
+  border: black;
+  border-style: solid;
+  border-color: lightsteelblue;
+  border-width: thin;
+  margin: auto;
+}
+
+.logo-img-account {
+  font-size: 215px;
+  padding-top: .15em;
+}
+
+.h3{
+  color: white;
+  font-size: 50px;
+  padding-bottom: 25px;
+}
+.terms{
+  color: white;
+  padding: 15px;
+
+}
+
+.terms a{
+  color: blue;
+  text-decoration: underline;
+}
+
+.form-group{
+  text-align: left;
+  color: white;
+}
+
+.register{
+   text-decoration: underline;
+   padding-bottom: 10px;
+}
+
+.cannot-login{
+  color: blue;
+}

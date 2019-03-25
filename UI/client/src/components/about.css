@@ -1,0 +1,39 @@
+.about-back{
+  margin: auto;
+  text-align: center;
+  width: 90%;
+}
+
+
+.about-back h1 {
+  padding-top: 10px;
+  font-size: 70px;
+  color: white;
+  font-family: serif;
+}
+
+.about-back hr {
+  border-top: 5px line;
+  border-top-width: thin;
+  border-color: white;
+  width: 80%;
+  margin: auto;
+  padding-bottom: 50px;
+}
+
+.col-sm-6 h2{
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  padding-bottom: 35px;
+  font-family: serif;
+  text-decoration: underline;
+}
+
+.pic {
+  border-color: steelblue;
+  border-style: outset;
+  border-radius: 70%;
+  height: 200px;
+  width: 40%;
+}

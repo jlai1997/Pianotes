@@ -1,0 +1,47 @@
+.background {
+  background: #00c6ff;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #0072ff, #00c6ff);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #0072ff, #00c6ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+}
+
+.term-back{
+  background-color: white;
+  width: 85%;
+  height: 50%;
+  text-align: center;
+  margin: auto;
+  border-style: double;
+  border-color: steelblue;
+}
+
+.terms-listed{
+  width: 85%;
+  margin: auto;
+  padding-bottom: 30px;
+}
+
+.term-back h1{
+  font-size: 45px;
+  padding-top: 15px;
+}
+
+.term-back hr{
+  border-top: 5px line;
+  width: 70%;
+  margin: auto;
+  border-top-width: thin;
+  border-color: black;
+  padding-bottom: 20px;
+
+}
+
+.term-back h2{
+  font-size: 35px;
+  padding-bottom: 10px;
+}
+
+.term-back p{
+  text-align: justify;
+}
