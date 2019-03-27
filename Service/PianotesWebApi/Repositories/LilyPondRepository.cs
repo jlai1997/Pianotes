@@ -87,7 +87,7 @@ namespace PianotesWebApi.Repositories
             Process p = new Process();
             p.StartInfo.FileName = "CMD.exe";
             p.StartInfo.WorkingDirectory = @"C:\LilyPond";
-            p.StartInfo.Arguments = "/c lilypond " + inputs.PdfName + ".ly";
+            p.StartInfo.Arguments = "/k lilypond " + inputs.PdfName + ".ly";
             p.Start();
         }
 

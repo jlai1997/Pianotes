@@ -1,0 +1,396 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OnsetDetection</name>
+    </assembly>
+    <members>
+        <member name="T:OnsetDetection.Filter">
+            <summary>
+            Filter class
+            </summary>
+        </member>
+        <member name="M:OnsetDetection.Filter.#ctor(System.Int32,System.Int32,OnsetDetection.MemoryAllocator,System.Int32,System.Single,System.Single,System.Boolean)">
+            <summary>
+            Creates a new Filter object instance
+            </summary>
+            <param name="ffts">number of FFT coefficients</param>
+            <param name="fs">sample rate of the audio file</param>
+            <param name="bands">number of filter bands</param>
+            <param name="fmin">the minimum frequency [in Hz]</param>
+            <param name="fmax">the maximum frequency [in Hz]</param>
+            <param name="equal">normalize each band to equal energy</param>
+        </member>
+        <member name="M:OnsetDetection.Filter.Frequencies(System.Int32,System.Single,System.Single,System.Single)">
+            <summary>
+            Returns a list of frequencies aligned on a logarithmic scale
+            Using 12 bands per octave and a=440 corresponding to the MIDI notes.
+            </summary>
+            <param name="bands">number of filter bands per octave</param>
+            <param name="fmin">the minimum frequency [in Hz]</param>
+            <param name="fmax">the maximum frequency [in Hz]</param>
+            <param name="a">frequency of A0 [in Hz]</param>
+            <returns>a list of frequencies</returns>
+        </member>
+        <member name="M:OnsetDetection.Filter.Triang(System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Calculates a triangular window of the given size.
+            </summary>
+            <param name="start">starting bin (with value 0, included in the returned filter)</param>
+            <param name="mid">center bin (of height 1, unless norm is True)</param>
+            <param name="stop">end bin (with value 0, not included in the returned filter)</param>
+            <param name="equal">normalize the area of the filter to 1 [default=False]</param>
+            <returns>a triangular shaped filter</returns>
+        </member>
+        <member name="T:OnsetDetection.Onsets">
+            <summary>
+            Onset Class
+            </summary>
+        </member>
+        <member name="M:OnsetDetection.Onsets.#ctor(MathNet.Numerics.LinearAlgebra.Vector{System.Single},System.Int32,System.Boolean)">
+            <summary>
+            Creates a new Onset object instance with the given activations of the ODF (OnsetDetectionFunction).
+            The activations will be read in from a file
+            </summary>
+            <param name="activations">an array containing the activations of the ODF</param>
+            <param name="fps">frame rate of the activations</param>
+            <param name="online">work in online mode (i.e. use only past information)</param>
+        </member>
+        <member name="M:OnsetDetection.Onsets.#ctor(System.String,System.Int32,System.Boolean)">
+            <summary>
+            Creates a new Onset object instance with the given activations of the ODF (OnsetDetectionFunction).
+            </summary>
+            <param name="activationFile">a file containing the activations of the ODF</param>
+            <param name="fps">frame rate of the activations</param>
+            <param name="online">work in online mode (i.e. use only past information)</param>>
+        </member>
+        <member name="M:OnsetDetection.Onsets.Detect(System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Detects the onsets <para />
+            In online mode, post_avg and post_max are set to 0 <para />
+            
+            Implements the peak-picking method described in: <para />
+            "Evaluating the Online Capabilities of Onset Detection Methods" <para />
+            Sebastian Böck, Florian Krebs and Markus Schedl <para />
+            Proceedings of the 13th International Society for Music Information Retrieval Conference(ISMIR), 2012 <para />
+            </summary>
+            <param name="threshold">threshold for peak-picking</param>
+            <param name="combine">only report 1 onset for N milliseconds</param>
+            <param name="preAvg">use N milliseconds for moving average</param>
+            <param name="preMax">use N milliseconds past information for moving maximum</param>
+            <param name="postAvg">use N milliseconds future information for moving average</param>
+            <param name="postMax">using N milliseconds future information for moving maximum</param>
+            <param name="delay">report the onset N milliseconds delayed</param>
+            <param name="lastOnset">last reported onset relative to delay in milliseconds - can be -ve</param>
+        </member>
+        <member name="F:OnsetDetection.DetectorOptions.SliceLength">
+            <summary>
+            Slice the audio up into segments of this length for parallelism. Default is 10.0f <para />
+            Given in seconds
+            </summary>
+        </member>
+        <member name="F:OnsetDetection.DetectorOptions.SlicePaddingLength">
+            <summary>
+            Padding to add to either end of a slice to ensure no beats are missed. Default is 0.01f <para /> 
+            Given in seconds
+            </summary>
+        </member>
+        <member name="F:OnsetDetection.DetectorOptions.MaxDegreeOfParallelism">
+            <summary>
+            The max degree of parallelism to use. Default is -1 - scheduler decides
+            </summary>
+        </member>
+        <member name="F:OnsetDetection.DetectorOptions.ActivationThreshold">
+            <summary>
+            The activation threshold to use for the detection. Default is 5f
+            </summary>
+        </member>
+        <member name="F:OnsetDetection.DetectorOptions.MinimumTimeDelta">
+            <summary>
+            The minimum time that must occur between successive onsets. Default is 30f <para />
+            Given in milliseconds.
+            </summary>
+        </member>
+        <member name="F:OnsetDetection.DetectorOptions.WindowSize">
+            <summary>
+            The size of the window in samples. Default is 2048
+            </summary>
+        </member>
+        <member name="F:OnsetDetection.DetectorOptions.FPS">
+            <summary>
+            The frames-per-second of the detector.  Default is 200
+            </summary>
+        </member>
+        <member name="F:OnsetDetection.DetectorOptions.Online">
+            <summary>
+            Whether to use only past information or not. Default is true
+            </summary>
+        </member>
+        <member name="F:OnsetDetection.DetectorOptions.DetectionFunction">
+            <summary>
+            The onset detection function to use. Default is Detectors.SF
+            </summary>
+        </member>
+        <member name="F:OnsetDetection.DetectorOptions.Log">
+            <summary>
+            Whether to take the log of the spectrogram. Default is true
+            </summary>
+        </member>
+        <member name="F:OnsetDetection.DetectorOptions.LogMultiplier">
+            <summary>
+            Multiplier before taking the log. Default is 1
+            </summary>
+        </member>
+        <member name="F:OnsetDetection.DetectorOptions.LogAdd">
+            <summary>
+            Value added before taking the log. Default is 1
+            </summary>
+        </member>
+        <member name="F:OnsetDetection.DetectorOptions.AdaptiveWhitening">
+            <summary>
+            Whether to apply adaptive whitening. Default is false
+            </summary>
+        </member>
+        <member name="F:OnsetDetection.DetectorOptions.AWFloor">
+            <summary>
+            Floor value for adaptive whitening. Default is 5.0f
+            </summary>
+        </member>
+        <member name="F:OnsetDetection.DetectorOptions.AWRelax">
+            <summary>
+            Relaxation time for adaptive whitening. Default is 10.0f
+            </summary>
+        </member>
+        <member name="F:OnsetDetection.Detectors.HFC">
+            <summary>High Frequency Content</summary>
+        </member>
+        <member name="F:OnsetDetection.Detectors.SD">
+            <summary>Spectral Diff</summary>
+        </member>
+        <member name="F:OnsetDetection.Detectors.SF">
+            <summary>Spectral Flux</summary>
+        </member>
+        <member name="F:OnsetDetection.Detectors.MKL">
+            <summary>Modified Kullback-Leibler</summary>
+        </member>
+        <member name="F:OnsetDetection.Detectors.PD">
+            <summary>Phase Deviation</summary>
+        </member>
+        <member name="F:OnsetDetection.Detectors.WPD">
+            <summary>Weighted Phase Deviation</summary>
+        </member>
+        <member name="F:OnsetDetection.Detectors.NWPD">
+            <summary>Normalized Weighted Phase Deviation</summary>
+        </member>
+        <member name="F:OnsetDetection.Detectors.CD">
+            <summary>Complex Domain</summary>
+        </member>
+        <member name="F:OnsetDetection.Detectors.RCD">
+            <summary>Rectified Complex Domain</summary>
+        </member>
+        <member name="T:OnsetDetection.Spectrogram">
+            <summary>
+            Spectrogram Class
+            </summary>
+        </member>
+        <member name="M:OnsetDetection.Spectrogram.#ctor(OnsetDetection.Wav,OnsetDetection.MemoryAllocator,System.Int32,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Creates a new Spectrogram object instance and performs a STFT on the given audio
+            </summary>
+            <param name="wav">a Wav object</param>
+            <param name="windowSize">is the size for the window in samples</param>
+            <param name="fps">is the desired frame rate</param>
+            <param name="online">work in online mode (i.e. use only past audio information)</param>
+            <param name="phase">include phase information</param>
+        </member>
+        <member name="M:OnsetDetection.Spectrogram.AW(System.Single,System.Single)">
+            <summary>
+            Perform adaptive whitening on the magnitude spectrogram
+            </summary>
+            <param name="floor">floor value</param>
+            <param name="relaxation">relaxation time in seconds</param>
+            "Adaptive Whitening For Improved Real-time Audio Onset Detection"
+            Dan Stowell and Mark Plumbley
+            Proceedings of the International Computer Music Conference(ICMC), 2007
+        </member>
+        <member name="M:OnsetDetection.Spectrogram.Filter(MathNet.Numerics.LinearAlgebra.Matrix{System.Single})">
+            <summary>
+            Filter the magnitude spectrogram with a filterbank
+            If no filter is given a standard one will be created
+            </summary>
+            <param name="Filterbank">Filter object which includes the filterbank</param>
+        </member>
+        <member name="M:OnsetDetection.Spectrogram.Log(System.Single,System.Single)">
+            <summary>
+            Take the logarithm of the magnitude spectrogram
+            </summary>
+            <param name="mul">multiply the magnitude spectrogram with given value</param>
+            <param name="add">add the given value to the magnitude spectrogram</param>
+        </member>
+        <member name="T:OnsetDetection.SpectralODF">
+            <summary>
+            The SpectralODF class implements most of the common onset detection function based on
+            the magnitued or phase information of a spectrogram
+            </summary>
+        </member>
+        <member name="M:OnsetDetection.SpectralODF.#ctor(OnsetDetection.Spectrogram,OnsetDetection.MemoryAllocator,System.Single,System.Int32)">
+            <summary>
+            Creates a new ODF object instance
+            </summary>
+            <param name="spectogram">the spectrogram on which the detection functions operate</param>
+            <param name="ratio">calculate the difference to the frame which has the given magnitude ratio</param>
+            <param name="frames">calculate the difference to the N-th previous frame</param>
+        </member>
+        <member name="M:OnsetDetection.SpectralODF.WrapToPi(System.Single)">
+            <summary>
+            Wrap the phase informatino to the range -π...π
+            </summary>
+            <param name="angle">angle to wrap</param>
+            <returns></returns>
+        </member>
+        <member name="M:OnsetDetection.SpectralODF.Diff(MathNet.Numerics.LinearAlgebra.Matrix{System.Single},System.Boolean,System.Int32)">
+            <summary>
+            Calculates the difference on the magnitude spectrogram
+            </summary>
+            <param name="spec">the magnitude spectrogram</param>
+            <param name="pos">only keep positive values</param>
+            <param name="diffFrames">calculate the difference to the N-th previous frame</param>
+        </member>
+        <member name="M:OnsetDetection.SpectralODF.HFC">
+            <summary>
+            High Frequency Content
+                    "Computer Modeling of Sound for Transformation and Synthesis of Musical Signals"
+                    Paul Masri
+                    PhD thesis, University of Bristol, 1996
+            </summary>
+        </member>
+        <member name="M:OnsetDetection.SpectralODF.SD">
+            <summary>
+            Spectral Diff
+            "A hybrid approach to musical note onset detection"
+            Chris Duxbury, Mark Sandler and Matthew Davis
+            Proceedings of the 5th International Conference on Digital Audio Effects(DAFx-02), 2002.
+            </summary>
+        </member>
+        <member name="M:OnsetDetection.SpectralODF.SF">
+            <summary>
+            Spectral Flux
+            "Computer Modeling of Sound for Transformation and Synthesis of Musical Signals"
+            Paul Masri
+            PhD thesis, University of Bristol, 1996
+            </summary>
+        </member>
+        <member name="M:OnsetDetection.SpectralODF.MKL(System.Single)">
+            <summary>
+            Modified Kullback-Leibler
+            we use the implenmentation presented in:
+            "Automatic Annotation of Musical Audio for Interactive Applications"
+            Paul Brossier
+            PhD thesis, Queen Mary University of London, 2006
+            
+            instead of the original work:
+            "Onset Detection in Musical Audio Signals"
+            Stephen Hainsworth and Malcolm Macleod
+            Proceedings of the International Computer Music Conference(ICMC), 2003
+            </summary>
+            <param name="epsilon">add epsilon to avoid division by 0</param>
+        </member>
+        <member name="M:OnsetDetection.SpectralODF._PD">
+            <summary>
+            Helper method used by PD() and WPD()
+            </summary>
+        </member>
+        <member name="M:OnsetDetection.SpectralODF.PD">
+            <summary>
+            Phase Deviation
+            "On the use of phase and energy for musical onset detection in the complex domain"
+            Juan Pablo Bello, Chris Duxbury, Matthew Davies and Mark Sandler
+            IEEE Signal Processing Letters, Volume 11, Number 6, 2004
+            </summary>
+        </member>
+        <member name="M:OnsetDetection.SpectralODF.WPD">
+            <summary>
+            Weighted Phase Deviation
+            "Onset Detection Revisited"
+            Simon Dixon
+            Proceedings of the 9th International Conference on Digital Audio Effects(DAFx), 2006
+            </summary>
+        </member>
+        <member name="M:OnsetDetection.SpectralODF.NWPD(System.Single)">
+            <summary>
+            Normalized Weighted Phase Deviation
+            "Onset Detection Revisited"
+            Simon Dixon
+            Proceedings of the 9th International Conference on Digital Audio Effects(DAFx), 2006
+            </summary>
+            <param name="epsilon">add epsilon to avoid division by 0</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:OnsetDetection.SpectralODF._CD" -->
+        <member name="M:OnsetDetection.SpectralODF.CD">
+            <summary>
+            Complex Domain
+            "On the use of phase and energy for musical onset detection in the complex domain"
+            Juan Pablo Bello, Chris Duxbury, Matthew Davies and Mark Sandler
+            IEEE Signal Processing Letters, Volume 11, Number 6, 2004
+            </summary>
+        </member>
+        <member name="M:OnsetDetection.SpectralODF.RCD">
+            <summary>
+            Rectified Complex Domain
+            "Onset Detection Revisited"
+            Simon Dixon
+            Proceedings of the 9th International Conference on Digital Audio Effects(DAFx), 2006
+            </summary>
+        </member>
+        <member name="T:OnsetDetection.Wav">
+            <summary>
+            Wav Class is a simple wrapper around cscore
+            </summary>
+        </member>
+        <member name="M:OnsetDetection.Wav.#ctor(System.String)">
+            <summary>
+            Creates a new Wav object instance of the given file
+            </summary>
+            <param name="filename">name of the .wav file</param>
+        </member>
+        <member name="M:OnsetDetection.Wav.#ctor(CSCore.ISampleSource)">
+            <summary>
+            Creates a new Wav object instance of the given sample source
+            </summary>
+            <param name="sampleSource">sample source to use</param>
+        </member>
+        <member name="M:OnsetDetection.Wav.#ctor(MathNet.Numerics.LinearAlgebra.Matrix{System.Single},System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Creates a new Wav object of the given audio matrix and wave format information
+            </summary>
+            <param name="audio">audio data [of dimensions (channel count, sample count)] </param>
+            <param name="samplerate"></param>
+            <param name="samples"></param>
+            <param name="channels"></param>
+        </member>
+        <member name="M:OnsetDetection.Wav.#ctor(System.Single[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Creates a new Wav object of the given audio matrix and wave format information
+            </summary>
+            <param name="audio">audio data [of dimensions (channel count, sample count)] </param>
+            <param name="samplerate"></param>
+            <param name="samples"></param>
+            <param name="channels"></param>
+        </member>
+        <member name="M:OnsetDetection.Wav.Attenuate(System.Single)">
+            <summary>
+            Attenuate the audio signal
+            </summary>
+            <param name="attenuation">attenuation level given in dB</param>
+        </member>
+        <member name="M:OnsetDetection.Wav.DownMix">
+            <summary>
+            Down-mix the signal to mono
+            </summary>
+        </member>
+        <member name="M:OnsetDetection.Wav.Normalize">
+            <summary>
+            Normalize the audio signal
+            </summary>
+        </member>
+    </members>
+</doc>
