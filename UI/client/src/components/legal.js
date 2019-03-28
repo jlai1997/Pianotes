@@ -24,14 +24,22 @@ class Legal extends Component {
             unaccessible to you.</p>
 
             <h2>2. Use License </h2>
-            <p>Tu ne quaesieris, scire nefas, quem mihi, quem tibi
-               finem di dederint, Leuconoe, nec Babylonios
-               temptaris numeros. ut melius, quidquid erit, pati.
-               seu pluris hiemes seu tribuit Iuppiter ultimam,
-               quae nunc oppositis debilitat pumicibus mare
-               Tyrrhenum. Sapias, vina liques et spatio brevi
-               spem longam reseces. dum loquimur, fugerit invida
-               aetas: carpe diem, quam minimum credula postero. </p>
+            <p>With the use of Pianote's materials and applications, permission
+            is granted to modify a piece of musical artwork that must have been composed
+            by the account user whom uses Pianote's applications.
+            Users of Pianote's applications may not:</p>
+            <div className="points">
+              <ul>
+                <li>use the application to generate an income for the user, a business, or any other
+                beneficiary</li>
+                <li>violate any copyright law by creating, copying, or/and distributing sheet music
+                that does not belong to you or was not given an expressed permission to do so</li>
+              </ul>
+            </div>
+            <p>The user's account will automatically be terminated if they violate
+            any of these restrictions and may be terminated by Pianotes at any
+            time. Note, that if any copyright law violators may be subject of a
+            lawsuit for monetary damages</p>
 
             <h2>3. Disclaimer </h2>
             <p>All services and materials on Pianotes's web site are provided "as is".

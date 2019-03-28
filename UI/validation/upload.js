@@ -7,8 +7,8 @@ module.exports = function validateLoginInput(data) {
   data.composer = !isEmpty(data.composer) ? data.composer : "";
   data.title = !isEmpty(data.title) ? data.title : "";
   data.tempo = !isEmpty(data.tempo) ? data.tempo : "";
-  data.time_signature = !isEmpty(data.time_signature) ? data.time_signature : "";
-  data.key_signature = !isEmpty(data.key_signature) ? data.key_signature : "";
+  data.time = !isEmpty(data.time) ? data.time : "";
+  data.key = !isEmpty(data.key) ? data.key : "";
   data.clef = !isEmpty(data.clef) ? data.clef : "";
   data.instrument = !isEmpty(data.instrument) ? data.instrument : "";
   data.pdf = !isEmpty(data.pdf) ? data.pdf : "";
@@ -29,12 +29,12 @@ module.exports = function validateLoginInput(data) {
     errors.tempo = "Tempo field is required";
   }
 
-  if (Validator.isEmpty(data.time_signature)) {
-    errors.time_signature = "Time signature field is required";
+  if (Validator.isEmpty(data.time)) {
+    errors.time = "Time signature field is required";
   }
 
-  if (Validator.isEmpty(data.key_signature)) {
-    errors.key_signature = "Key signature field is required";
+  if (Validator.isEmpty(data.key)) {
+    errors.key = "Key signature field is required";
   }
 
   if (Validator.isEmpty(data.clef)) {

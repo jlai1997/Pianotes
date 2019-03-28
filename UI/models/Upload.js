@@ -15,11 +15,11 @@ const UploadSchema = new Schema({
     type: String,
     required: true
   },
-  time_signature: {
+  time: {
     type: String,
     required: true
   },
-  key_signature: {
+  key: {
     type: String,
     required: true
   },
@@ -41,4 +41,4 @@ const UploadSchema = new Schema({
   }
 });
 
-module.exports = Upload = mongoose.model("upload", UserSchema);
+module.exports = Upload = mongoose.model("upload", UploadSchema);

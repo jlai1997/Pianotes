@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import SelectListGroup from "./common/SelectListGroup";
 import Footer from "./footer";
 import classnames from "classnames";
+import { uploadFile } from "../actions/authActions";
+import axios from "axios";
 
 class Landing extends Component {
   constructor() {
@@ -11,8 +13,8 @@ class Landing extends Component {
       composer: "",
       title: "",
       tempo: "",
-      time_signature: "",
-      key_signature: "",
+      time: "",
+      key: "",
       clef: "",
       instrument: "",
       pdf: "",
@@ -34,12 +36,18 @@ class Landing extends Component {
       composer: this.state.composer,
       title: this.state.title,
       tempo: this.state.tempo,
-      time_signature: this.state.time_signature,
-      key_signature: this.state.key_signature,
+      time: this.state.time,
+      key: this.state.key,
       clef: this.state.clef,
       instrument: this.state.instrument,
       pdf: this.state.pdf
     };
+
+    //this.props.uploadFile(uploadData, this.props.history);
+    axios
+      .post("/api/upload/file", uploadData)
+      .then(res => console.log(res.data))
+      .catch(err => this.setState({ errors: err.response.data }));
   }
 
   render() {
@@ -166,29 +174,29 @@ class Landing extends Component {
                   )}
                 </div>
                 <div className="form-group">
-                  <label htmlFor="time-signature">Time Signature</label>
+                  <label htmlFor="time">Time Signature</label>
                   <SelectListGroup
                     placeholder="time signature"
-                    name="time-signature"
-                    value={this.state.time_signature}
+                    name="time"
+                    value={this.state.time}
                     onChange={this.onChange}
                     options={time}
-                    error={errors.time_signature}
+                    error={errors.time}
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="key-signature">Key Signature</label>
+                  <label htmlFor="key">Key Signature</label>
                   <SelectListGroup
                     placeholder="key signature"
-                    name="key-signature"
-                    value={this.state.key_signature}
+                    name="key"
+                    value={this.state.key}
                     onChange={this.onChange}
                     options={key}
-                    error={errors.key_signature}
+                    error={errors.key}
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="password2">Clef</label>
+                  <label htmlFor="clef">Clef</label>
                   <SelectListGroup
                     placeholder="clef"
                     name="clef"

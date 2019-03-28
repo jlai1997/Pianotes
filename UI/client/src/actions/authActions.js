@@ -41,6 +41,14 @@ export const loginUser = userData => dispatch => {
     );
 };
 
+// Upload file
+export const uploadFile = uploadData => dispatch => {
+  axios
+    .post('/api/upload/file', uploadData)
+    .then(res => console.log(res.data))
+    .catch(err => this.setState({errors: err.response.data}))
+};
+
 // Set logged in user
 export const setCurrentUser = decoded => {
   return {
