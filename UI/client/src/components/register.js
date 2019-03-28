@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { registerUser } from '../actions/authActions';
 import classnames from 'classnames';
 import Footer from './footer';
+import { Link } from 'react-router-dom';
 
 class Register extends Component {
   constructor() {
@@ -18,6 +22,18 @@ class Register extends Component {
     this.onSubmit = this.onSubmit.bind(this)
   }
 
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push('/profile');
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value})
   }
@@ -32,11 +48,7 @@ class Register extends Component {
       password2: this.state.password2
     }
 
-    axios
-      .post('/api/users/register', newUser)
-      .then(res => this.props.history.push('/login'))
-      .catch(err => this.setState({errors: err.response.data}));
-
+    this.props.registerUser(newUser, this.props.history);
   }
 
   render() {
@@ -45,12 +57,14 @@ class Register extends Component {
     return (
       <div className="background">
         <div className="container">
-        <div className="container2">
-          <img
-            src="user.png"
-            alt="logo"
-            className="logo-img-account"
-          />
+        <div className="container1">
+          <div className="account-logo">
+            <img
+              src="user.png"
+              alt="logo"
+              className="logo-img-account"
+            />
+          </div>
           <div className="row">
             <div className="col-md-8 mt5 mx-auto">
               <form noValidate onSubmit={this.onSubmit}>
@@ -124,7 +138,7 @@ class Register extends Component {
                     type="checkbox"
                     name="checkbox"
                     value="check"
-                    id="agree" /> I have read and agree to the <a href="/legal" target='_blank'> Terms and Conditions</a>
+                    id="agree" /> I have read and agree to the <Link to="/terms" target='_blank'> Terms and Conditions</Link>
                 </div>
                 <button
                   type="submit"
@@ -143,4 +157,15 @@ class Register extends Component {
   }
 }
 
-export default Register;
+Register.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(mapStateToProps, { registerUser })(withRouter(Register));

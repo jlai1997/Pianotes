@@ -8,8 +8,7 @@
 }
 
 .container1{
-  text-align: center;
-  width: 50%;
+  width: 55%;
   background-color: steelblue;
   padding-top: 5px;
   padding-bottom: 25px;
@@ -19,18 +18,8 @@
   border-width: thin;
   margin: auto;
 }
-
-.container2{
+.account-logo {
   text-align: center;
-  width: 60%;
-  background-color: steelblue;
-  padding-top: 5px;
-  padding-bottom: 25px;
-  border: black;
-  border-style: solid;
-  border-color: lightsteelblue;
-  border-width: thin;
-  margin: auto;
 }
 
 .logo-img-account {
@@ -42,11 +31,12 @@
   color: white;
   font-size: 50px;
   padding-bottom: 25px;
+  text-align: center;
 }
 .terms{
   color: white;
-  padding: 15px;
-
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .terms a{
@@ -62,6 +52,7 @@
 .register{
    text-decoration: underline;
    padding-bottom: 10px;
+   text-align: center;
 }
 
 .cannot-login{
