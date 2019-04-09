@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Footer from './footer';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { loginUser } from '../actions/authActions';
 import classnames from 'classnames';
 import './account.css';
 
@@ -17,6 +20,22 @@ class Account extends Component {
     this.onSubmit= this.onSubmit.bind(this)
   }
 
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push('/profile');
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push('/upload');
+    }
+
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value})
   }
@@ -28,14 +47,7 @@ class Account extends Component {
       password: this.state.password
     }
 
-    axios
-      .post('/api/users/login', user)
-      .then(res => {
-        localStorage.setItem('usertoken', res.data)
-        this.props.history.push('/')
-      })
-      .catch(err => this.setState({errors: err.response.data}));
-
+    this.props.loginUser(user);
   }
 
   render() {
@@ -91,7 +103,7 @@ class Account extends Component {
                   )}
                 </div>
                 <div className="register">
-                  <a href="/register" target="_top" class="cannot-login">Don't have an account? Register here</a>
+                  <Link to="/register" target="_top" class="cannot-login">Don't have an account? Register here</Link>
                 </div>
                 <button
                   type="submit"
@@ -110,4 +122,15 @@ class Account extends Component {
   }
 }
 
-export default Account;
+Account.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(mapStateToProps, { loginUser })(Account);

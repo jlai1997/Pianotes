@@ -1,33 +1,54 @@
+.about-background{
+  background: #00c6ff;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #0072ff, #00c6ff);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #0072ff, #00c6ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.aboutus{
+  width: 85%;
+  height: 50%;
+  margin: auto;
+  padding-top: 25px;
+  padding-bottom: 50px;
+}
+
+.about-title{
+  text-align: center;
+}
+
+.story{
+  width: 85%;
+  height: 50%;
+  margin: auto;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
 .about-back{
   margin: auto;
   text-align: center;
   width: 90%;
 }
 
-
-.about-back h1 {
+.about-background h1 {
   padding-top: 10px;
-  font-size: 70px;
+  padding-bottom: 15px;
+  font-size: 55px;
   color: white;
-  font-family: serif;
 }
 
-.about-back hr {
-  border-top: 5px line;
-  border-top-width: thin;
-  border-color: white;
-  width: 80%;
-  margin: auto;
-  padding-bottom: 50px;
+.about-background p {
+  font-size: 20px;
+  color: white;
+  text-indent: 45px;
 }
 
 .col-sm-6 h2{
-  font-size: 30px;
+  font-size: 23px;
   font-weight: bold;
   color: white;
   padding-bottom: 35px;
-  font-family: serif;
-  text-decoration: underline;
 }
 
 .pic {
@@ -36,4 +57,14 @@
   border-radius: 70%;
   height: 200px;
   width: 40%;
+  max-width: 100%;
+}
+
+.ucf-pic{
+  text-align: center;
+  height: 125px;
+}
+
+.ucf-logo{
+  height: 100%;
 }

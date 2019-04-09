@@ -3,8 +3,11 @@
   text-align: center;
 }
 
-.logo-img-foot{
-  padding-top: 5px;
+.logo-foot{
+  padding-bottom: 10px;
+}
+
+.foot-logo{
   height: 80px;
 }
 
@@ -22,5 +25,5 @@
   width: 90%;
   margin: auto;
   padding-top: 10px;
-  padding-bottom: 25px;
+  padding-bottom: 15px;
 }

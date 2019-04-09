@@ -10,7 +10,6 @@
   background-color: white;
   width: 85%;
   height: 50%;
-  text-align: center;
   margin: auto;
   border-style: double;
   border-color: steelblue;
@@ -25,6 +24,7 @@
 .term-back h1{
   font-size: 45px;
   padding-top: 15px;
+  text-align: center;
 }
 
 .term-back hr{
@@ -40,8 +40,14 @@
 .term-back h2{
   font-size: 35px;
   padding-bottom: 10px;
+  text-align: center;
 }
 
 .term-back p{
   text-align: justify;
+}
+
+.points{
+  width: 70%;
+  margin: auto;
 }
