@@ -7,11 +7,11 @@ module.exports = function validateLoginInput(data) {
   data.composer = !isEmpty(data.composer) ? data.composer : "";
   data.title = !isEmpty(data.title) ? data.title : "";
   data.tempo = !isEmpty(data.tempo) ? data.tempo : "";
-  data.time = !isEmpty(data.time) ? data.time : "";
-  data.key = !isEmpty(data.key) ? data.key : "";
+  data.timeSignature = !isEmpty(data.timeSignature) ? data.timeSignature : "";
+  data.keySignature = !isEmpty(data.keySignature) ? data.keySignature : "";
   data.clef = !isEmpty(data.clef) ? data.clef : "";
   data.instrument = !isEmpty(data.instrument) ? data.instrument : "";
-  data.pdf = !isEmpty(data.pdf) ? data.pdf : "";
+  data.pdfName = !isEmpty(data.pdfName) ? data.pdfName : "";
 
   if (!Validator.isLength(data.composer, { min: 2, max: 30 })) {
     errors.composer = "Composer's name must be between 2 and 30 characters";
@@ -29,12 +29,12 @@ module.exports = function validateLoginInput(data) {
     errors.tempo = "Tempo field is required";
   }
 
-  if (Validator.isEmpty(data.time)) {
-    errors.time = "Time signature field is required";
+  if (Validator.isEmpty(data.timeSignature)) {
+    errors.timeSignature = "Time signature field is required";
   }
 
-  if (Validator.isEmpty(data.key)) {
-    errors.key = "Key signature field is required";
+  if (Validator.isEmpty(data.keySignature)) {
+    errors.keySignature = "Key signature field is required";
   }
 
   if (Validator.isEmpty(data.clef)) {
@@ -45,8 +45,8 @@ module.exports = function validateLoginInput(data) {
     errors.instrument = "Instrument field is required";
   }
 
-  if (Validator.isEmpty(data.pdf)) {
-    errors.pdf = "Pdf field is required";
+  if (Validator.isEmpty(data.pdfName)) {
+    errors.pdfName = "Pdf field is required";
   }
 
   return {

@@ -15,11 +15,11 @@ const UploadSchema = new Schema({
     type: String,
     required: true
   },
-  time: {
+  timeSignature: {
     type: String,
     required: true
   },
-  key: {
+  keySignature: {
     type: String,
     required: true
   },
@@ -31,7 +31,11 @@ const UploadSchema = new Schema({
     type: String,
     required: true
   },
-  pdf: {
+  pdfName: {
+    type: String,
+    required: true
+  },
+  soundFilePath: {
     type: String,
     required: true
   },
