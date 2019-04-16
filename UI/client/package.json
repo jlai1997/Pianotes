@@ -2,6 +2,7 @@
   "name": "pianotes",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/pianotes",
   "dependencies": {
     "@material-ui/core": "^3.9.3",
     "@react-pdf/renderer": "^1.5.2",

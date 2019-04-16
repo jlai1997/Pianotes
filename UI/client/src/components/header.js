@@ -18,17 +18,17 @@ class Navbar extends Component {
     const authLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
-          <Link className="nav-link" to="/profile">
+          <Link className="nav-link" to="/pianotes/profile">
             Account
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/terms">
+          <Link className="nav-link" to="/pianotes/terms">
             Terms
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/about">
+          <Link className="nav-link" to="/pianotes/about">
             About
           </Link>
         </li>
@@ -47,17 +47,17 @@ class Navbar extends Component {
     const guestLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
-          <Link className="nav-link" to="/login">
+          <Link className="nav-link" to="/pianotes/login">
             Login
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/terms">
+          <Link className="nav-link" to="/pianotes/terms">
             Terms
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/about">
+          <Link className="nav-link" to="/pianotes/about">
             About
           </Link>
         </li>
@@ -67,7 +67,7 @@ class Navbar extends Component {
     return (
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
         <div className="container">
-          <Link className="navbar-brand" to="/">
+          <Link className="navbar-brand" to="/pianotes">
           <img
             className="rounded-circle"
             src="logo.png"

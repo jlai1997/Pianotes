@@ -22,13 +22,13 @@ class Account extends Component {
 
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
-      this.props.history.push('/profile');
+      this.props.history.push('/pianotes/profile');
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
-      this.props.history.push('/upload');
+      this.props.history.push('/pianotes/upload');
     }
 
     if (nextProps.errors) {
@@ -103,7 +103,7 @@ class Account extends Component {
                   )}
                 </div>
                 <div className="register">
-                  <Link to="/register" target="_top" class="cannot-login">Don't have an account? Register here</Link>
+                  <Link to="/pianotes/register" target="_top" class="cannot-login">Don't have an account? Register here</Link>
                 </div>
                 <button
                   type="submit"

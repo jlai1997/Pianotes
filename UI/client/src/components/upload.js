@@ -23,6 +23,9 @@ class Upload extends Component {
 
   uploadFile(event) {
         this.file = event.target.files[0];
+
+        var infoArea = document.getElementById( 'filename' );
+        infoArea.textContent = this.file.name;
   }
 
   onChange(e) {
@@ -55,7 +58,7 @@ class Upload extends Component {
 
     if(this.state.fireRedirect) {
         return <Redirect to={{
-          pathname: '/contents',
+          pathname: '/pianotes/contents',
           state: {soundFilePath: this.state.soundFilePath}
         }}/>
     }
@@ -72,32 +75,23 @@ class Upload extends Component {
         <form noValidate onSubmit={this.onSubmit}>
 
           <div className="outer-box">
-            <div>
             <div className="banner-text">
-                <div className="social-links">
-                  <img
-                    id= "upload"
-                    class= "icon"
-                    src="music-file.png"
-                  />
-                </div>
-                <File/>
 
-                <input
-                  class="file"
-                  id="file"
-                  type="file"
-                  name="filetoupload"
-                  multiple="false"
-                  accept="audio/*"
-                  onChange={this.uploadFile}
-                />
-                {errors.file && (
-                  <div className="invalid-feedback">{errors.file}</div>
-                )}
+                  <input
+                    className="file"
+                    id="file"
+                    type="file"
+                    multiple="false"
+                    accept="audio/*"
+                    onChange={this.uploadFile}
+                    width = "100%"
+                  />
+                  <label for="file" id="filename">Choose a file</label>
+                  {errors.file && (
+                    <div className="invalid-feedback">{errors.file}</div>
+                  )}
               </div>
             </div>
-          </div>
 
           <div className="upload-page">
             <div className="col-md-8 mt5 mx-auto">

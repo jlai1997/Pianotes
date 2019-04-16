@@ -51,7 +51,6 @@
   color: white;
   font-size: 20px;
   padding: 1em;
-  text-decoration: underline;
 
 }
 
@@ -141,4 +140,50 @@
 
 .account-table{
   background: white;
+}
+
+.profile a {
+  text-decoration: none;
+  color: black;
+}
+
+.container-table {
+  padding-top: 50px;
+}
+
+.input-page input {
+  width: 100%;
+  background: black;
+}
+
+.file {
+  width: 100%;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.file + label {
+    font-size: 1.15em;
+    font-weight: 700;
+    color: white;
+    background: steelblue;
+    background-image: url('https://image.flaticon.com/icons/svg/1462/1462556.svg');
+    background-size: 80px;
+    background-position: center 60px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    cursor: pointer; /* "hand" cursor */
+    padding-top: 180px;
+    padding-bottom: 30px;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+.invalid-feedback {
+  color: darkred;
+  font-weight: bold;
+  text-align: center;
 }

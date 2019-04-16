@@ -15,6 +15,7 @@ class Register extends Component {
       email: '',
       password: '',
       password2: '',
+      terms: '',
       errors: {}
     }
 
@@ -24,7 +25,7 @@ class Register extends Component {
 
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
-      this.props.history.push('/profile');
+      this.props.history.push('/pianotes/profile');
     }
   }
 
@@ -41,11 +42,16 @@ class Register extends Component {
   onSubmit(e) {
     e.preventDefault()
 
+    if(document.getElementById('agree').checked) {
+      this.terms = 'true';
+    }
+
     const newUser = {
       name: this.state.name,
       email: this.state.email,
       password: this.state.password,
-      password2: this.state.password2
+      password2: this.state.password2,
+      terms: this.terms
     }
 
     this.props.registerUser(newUser, this.props.history);
@@ -135,10 +141,16 @@ class Register extends Component {
                 </div>
                 <div className="terms">
                   <input
+                    className={classnames("form-control", {
+                      'is-invalid': errors.terms
+                    })}
                     type="checkbox"
                     name="checkbox"
                     value="check"
-                    id="agree" /> I have read and agree to the <Link to="/terms" target='_blank'> Terms and Conditions</Link>
+                    id="agree" /> I have read and agree to the <Link to="/pianotes/terms" target='_blank'> Terms and Conditions</Link>
+                    {errors.terms && (
+                      <div className="invalid-feedback">{errors.terms}</div>
+                    )}
                 </div>
                 <button
                   type="submit"

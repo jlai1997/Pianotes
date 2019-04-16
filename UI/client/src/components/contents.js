@@ -64,7 +64,7 @@ class Upload extends Component {
 
     if(this.state.fireRedirect) {
         return <Redirect to={{
-          pathname: '/pdf',
+          pathname: '/pianotes/pdf',
           state: {pdfFilePath: this.state.pdfFilePath}
         }}/>
     }

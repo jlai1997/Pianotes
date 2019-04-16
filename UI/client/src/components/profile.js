@@ -38,35 +38,37 @@ class Profile extends Component {
             <div className="col-md-12">
               <h1 className="title">Welcome {user.name}</h1>
 
-              <Table striped bordered hover className="account-table">
-                <thead>
-                  <tr>
-                    <th>PDF Name</th>
-                    <th>Download</th>
-                  </tr>
-                </thead>
-                <tbody>
-                {
-                data.map(x => (
-                  <tr>
-                    <td>
-                      <a href="/pdf">
-                        {x.title}
-                      </a>
-                    </td>
-                    <td>
-                      <a href="scale.pdf" download>
-                        <img
-                          src="https://image.flaticon.com/icons/svg/138/138601.svg"
-                          alt="logo"
-                          style={{ width: '25px' }}
-                        />
-                      </a>
-                    </td>
-                  </tr>
-                ))}
-                </tbody>
-                </Table>;
+              <div className="container-table">
+                <Table striped bordered hover className="account-table">
+                  <thead>
+                    <tr>
+                      <th>PDF Name</th>
+                      <th>Download</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {
+                  data.map(x => (
+                    <tr>
+                      <td>
+                        <a href="/pianotes/pdf">
+                          {x.title}
+                        </a>
+                      </td>
+                      <td>
+                        <a href="scale.pdf" download>
+                          <img
+                            src="https://image.flaticon.com/icons/svg/138/138601.svg"
+                            alt="logo"
+                            style={{ width: '25px' }}
+                          />
+                        </a>
+                      </td>
+                    </tr>
+                  ))}
+                  </tbody>
+                  </Table>
+                </div>
 
               <div style={{ marginBottom: '60px' }} />
                 <button

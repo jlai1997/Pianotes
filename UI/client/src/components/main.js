@@ -14,15 +14,15 @@ import Pdf from './pdf';
 
 const Main = () => (
   <Switch>
-    <Route exact path="/" component={LandingPage} />
-    <Route path="/login" component={Account}/>
-    <Route path="/terms" component={Legal}/>
-    <Route path="/about" component={About}/>
-    <Route path="/register" component={Register}/>
-    <PrivateRoute exact path="/upload" component={Upload} />
-    <PrivateRoute exact path="/contents" component={Contents} />
-    <PrivateRoute exact path="/profile" component={Profile} />
-    <PrivateRoute exact path="/pdf" component={Pdf} />
+    <Route exact path="/pianotes" component={LandingPage} />
+    <Route path="/pianotes/login" component={Account}/>
+    <Route path="/pianotes/terms" component={Legal}/>
+    <Route path="/pianotes/about" component={About}/>
+    <Route path="/pianotes/register" component={Register}/>
+    <PrivateRoute exact path="/pianotes/upload" component={Upload} />
+    <PrivateRoute exact path="/pianotes/contents" component={Contents} />
+    <PrivateRoute exact path="/pianotes/profile" component={Profile} />
+    <PrivateRoute exact path="/pianotes/pdf" component={Pdf} />
   </Switch>
 )
 

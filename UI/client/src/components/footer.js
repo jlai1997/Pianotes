@@ -9,7 +9,7 @@ class Footer extends Component {
       <div className="footer-page text-white mt-5 p-4 text-center">
         <hr />
         <div className="logo-foot">
-          <Link className="footer-link" to="/about">
+          <Link className="footer-link" to="/pianotes/about">
             <img
               className="foot-logo"
               src="logo-name2.png"
